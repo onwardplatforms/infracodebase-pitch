@@ -76,9 +76,9 @@ export function Problem() {
           className="flex-shrink-0 p-6 rounded-lg bg-card text-right"
         >
           <p className="text-5xl font-semibold text-foreground tabular-nums">
-            <AnimatedCounter target={90} duration={2.5} /> days
+            <AnimatedCounter target={240} duration={3} /> days
           </p>
-          <p className="text-sm text-muted-foreground mt-1">average enterprise infrastructure project</p>
+          <p className="text-sm text-muted-foreground mt-1">lead time from request to usable infrastructure</p>
         </motion.div>
       </div>
 
