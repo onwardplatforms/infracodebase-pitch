@@ -6,7 +6,7 @@ const journeySteps = [
   { step: "Request", friction: "Goes into a queue behind dozens of other projects the team is already backed up on" },
   { step: "Plan", friction: "Manual architecture diagrams, scattered documentation, teams operating in silos" },
   { step: "Code", friction: "Manual operators, mix of cloud console and code, too slow to trust AI without the right systems" },
-  { step: "Ship", friction: "CI catches what should've been caught at code time — negative feedback loops pile up" },
+  { step: "Ship", friction: "CI catches what should've been caught at code time. Negative feedback loops pile up." },
   { step: "Rework", friction: "Back to the beginning" },
 ];
 

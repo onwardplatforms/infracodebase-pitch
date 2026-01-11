@@ -15,7 +15,7 @@ export function Hero() {
 
       {/* Visual placeholder */}
       <div className="mt-16 text-muted-foreground text-sm border border-dashed border-border rounded-lg p-8">
-        [Placeholder: Animated visualization — agent assembling infrastructure with governance constraints]
+        [Placeholder: Animated visualization]
       </div>
     </div>
   );
