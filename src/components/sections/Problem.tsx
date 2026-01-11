@@ -1,6 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useState } from "react";
+
+function AnimatedCounter({ target, duration = 2 }: { target: number; duration?: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const [showPlus, setShowPlus] = useState(false);
+  const count = useMotionValue(0);
+
+  useEffect(() => {
+    const controls = animate(count, target, {
+      duration,
+      delay: 0.5,
+      ease: [0.16, 0.1, 0.3, 1], // Custom ease: slow start, rapid acceleration
+      onUpdate: (latest) => setDisplayValue(Math.round(latest)),
+      onComplete: () => setShowPlus(true),
+    });
+    return controls.stop;
+  }, [count, target, duration]);
+
+  return (
+    <span className="inline-flex items-baseline">
+      <motion.span layout="position" transition={{ duration: 0.3, ease: "easeOut" }}>
+        {displayValue}
+      </motion.span>
+      <motion.span
+        initial={{ width: 0, opacity: 0 }}
+        animate={{
+          width: showPlus ? 32 : 0,
+          opacity: showPlus ? 1 : 0,
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="overflow-hidden inline-block"
+      >
+        +
+      </motion.span>
+    </span>
+  );
+}
 
 const journeySteps = [
   { step: "Request", friction: "Goes into a queue behind dozens of other projects the team is already backed up on" },
@@ -13,8 +50,8 @@ const journeySteps = [
 export function Problem() {
   return (
     <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
-      {/* Top - The Problem Statement (in your face) */}
-      <div className="flex-shrink-0 mb-12">
+      {/* Top - The Problem Statement */}
+      <div className="flex-shrink-0 mb-12 flex justify-between items-start">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,6 +67,18 @@ export function Problem() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-muted-foreground">
             Trust is the limiting factor.
           </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex-shrink-0 p-6 rounded-lg bg-card text-right"
+        >
+          <p className="text-5xl font-semibold text-foreground tabular-nums">
+            <AnimatedCounter target={90} duration={2.5} /> days
+          </p>
+          <p className="text-sm text-muted-foreground mt-1">average enterprise infrastructure project</p>
         </motion.div>
       </div>
 
@@ -73,13 +122,14 @@ export function Problem() {
 
           {/* Timeline with vertical line */}
           <div className="flex-1 relative">
-            {/* The timeline line */}
-            <div className="absolute left-3 top-0 bottom-0 w-px bg-muted-foreground/20">
+            {/* The timeline line - positioned to connect dot centers */}
+            <div className="absolute left-3 top-[2.75rem] bottom-[2.75rem] w-px -translate-x-1/2">
               <motion.div
-                className="w-full bg-muted-foreground/50"
-                initial={{ height: 0 }}
-                animate={{ height: "100%" }}
-                transition={{ duration: 1.5, delay: 0.5 }}
+                className="w-full h-full bg-muted-foreground/30"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                style={{ originY: 0 }}
               />
             </div>
 

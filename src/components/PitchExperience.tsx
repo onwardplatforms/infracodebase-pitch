@@ -29,7 +29,19 @@ const sectionNames = [
 
 export function PitchExperience({ children }: PitchExperienceProps) {
   const [currentSection, setCurrentSection] = useState(0);
+  const [visitCounts, setVisitCounts] = useState<number[]>(() =>
+    new Array(children.length).fill(0).map((_, i) => i === 0 ? 1 : 0)
+  );
   const totalSections = children.length;
+
+  // Increment visit count when section changes
+  useEffect(() => {
+    setVisitCounts(prev => {
+      const newCounts = [...prev];
+      newCounts[currentSection] = (newCounts[currentSection] || 0) + 1;
+      return newCounts;
+    });
+  }, [currentSection]);
 
   const goToNext = useCallback(() => {
     setCurrentSection((prev) => Math.min(prev + 1, totalSections - 1));
@@ -80,7 +92,7 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       >
         {children.map((child, index) => (
           <section
-            key={index}
+            key={`${index}-${visitCounts[index]}`}
             className="h-screen w-screen flex items-center justify-center"
           >
             {child}
