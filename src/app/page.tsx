@@ -4,6 +4,8 @@ import { Problem } from "@/components/sections/Problem";
 import { WhyNow } from "@/components/sections/WhyNow";
 import { ExistingSolutions } from "@/components/sections/ExistingSolutions";
 import { Insight } from "@/components/sections/Insight";
+import { Solution } from "@/components/sections/Solution";
+import { HowItWorks } from "@/components/sections/HowItWorks";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <WhyNow />
       <ExistingSolutions />
       <Insight />
+      <Solution />
+      <HowItWorks />
     </PitchExperience>
   );
 }
