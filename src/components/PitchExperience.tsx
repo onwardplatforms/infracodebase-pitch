@@ -2,10 +2,30 @@
 
 import { useState, useEffect, useCallback, ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface PitchExperienceProps {
   children: ReactNode[];
 }
+
+const sectionNames = [
+  "Infracodebase",
+  "The Problem",
+  "Why Now",
+  "Existing Solutions",
+  "The Insight",
+  "The Solution",
+  "How It Works",
+  "Why This Is Better",
+  "Why Customers Pay",
+  "Market Opportunity",
+  "The Team",
+];
 
 export function PitchExperience({ children }: PitchExperienceProps) {
   const [currentSection, setCurrentSection] = useState(0);
@@ -69,20 +89,28 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       </div>
 
       {/* Section indicator (right side) */}
-      <nav className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
-        {children.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSection(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSection
-                ? "bg-foreground scale-125"
-                : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-            }`}
-            aria-label={`Go to section ${index + 1}`}
-          />
-        ))}
-      </nav>
+      <TooltipProvider delayDuration={100}>
+        <nav className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
+          {children.map((_, index) => (
+            <Tooltip key={index}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => goToSection(index)}
+                  className={`w-2 rounded-full transition-all duration-300 ${
+                    index === currentSection
+                      ? "h-8 bg-foreground"
+                      : "h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to ${sectionNames[index] || `section ${index + 1}`}`}
+                />
+              </TooltipTrigger>
+              <TooltipContent side="left" className="text-sm">
+                {sectionNames[index] || `Section ${index + 1}`}
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </nav>
+      </TooltipProvider>
 
       {/* Navigation hint (first section only) */}
       {currentSection === 0 && (
