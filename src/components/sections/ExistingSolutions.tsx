@@ -6,17 +6,17 @@ const approaches = [
   {
     name: "Raw code generation",
     description: "Prompt an LLM, get Terraform, hope it passes review.",
-    problem: "Works for demos and side projects. Breaks down immediately in enterprise environments where security, consistency, and accountability matter.",
+    problem: "Works for demos. Breaks down in enterprise environments where security, consistency, and accountability matter.",
   },
   {
     name: "Bolt-on guardrails",
     description: "Policy engines, scanners, and linters catch problems after code is generated.",
-    problem: "Reduces risk, but reintroduces friction and manual rework. AI produces output, humans clean it up.",
+    problem: "Reduces risk, but reintroduces friction. AI produces output, humans clean it up.",
   },
   {
-    name: "Fragmented tooling",
-    description: "Cloud providers embed AI into individual tools, each with partial context.",
-    problem: "Teams are left stitching together governance and standards themselves.",
+    name: "Developer AI tools",
+    description: "Cursor, Copilot, Claude Code. Great for individual coding tasks.",
+    problem: "Biased toward execution. No organizational context. Infrastructure requires security, networking, and cloud expertise that code alone can't capture.",
   },
 ];
 
@@ -35,7 +35,7 @@ export function ExistingSolutions() {
             Why existing solutions fall short
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
-            Most attempts to apply AI to infrastructure fall into three categories.
+            Enterprises are trying everything. None of it is working.
           </h2>
         </motion.div>
       </div>
@@ -58,16 +58,26 @@ export function ExistingSolutions() {
           ))}
         </div>
 
-        {/* Punchline */}
+        {/* Stat + Punchline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-auto"
+          className="mt-auto flex items-end justify-between gap-8"
         >
-          <p className="text-2xl md:text-3xl text-foreground font-semibold max-w-4xl">
-            What's missing is a way to make AI understand how an organization builds infrastructure before it writes a single line of code.
-          </p>
+          <div>
+            <p className="text-5xl font-semibold text-foreground">95%</p>
+            <p className="text-lg text-muted-foreground">of enterprise AI projects fail to deliver measurable impact</p>
+            <p className="text-sm text-muted-foreground/60 mt-1">MIT 2025</p>
+          </div>
+          <div className="text-right max-w-2xl">
+            <p className="text-2xl md:text-3xl text-foreground font-semibold">
+              What's missing is an agentic foundation layer.
+            </p>
+            <p className="text-lg text-muted-foreground mt-2">
+              Rules, guardrails, security standards, workflows, tool integrations - codified so AI understands how your organization builds infrastructure.
+            </p>
+          </div>
         </motion.div>
       </div>
     </div>
