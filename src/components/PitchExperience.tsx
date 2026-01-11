@@ -28,8 +28,6 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       switch (e.key) {
         case "ArrowRight":
         case "ArrowDown":
-        case " ":
-        case "Enter":
           e.preventDefault();
           goToNext();
           break;
@@ -53,15 +51,8 @@ export function PitchExperience({ children }: PitchExperienceProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToNext, goToPrev, goToSection, totalSections]);
 
-  const handleClick = () => {
-    goToNext();
-  };
-
   return (
-    <div
-      className="relative h-screen w-screen overflow-hidden bg-background cursor-pointer"
-      onClick={handleClick}
-    >
+    <div className="relative h-screen w-screen overflow-hidden bg-background">
       {/* Sections */}
       <div
         className="h-full w-full transition-transform duration-500 ease-out"
@@ -77,15 +68,12 @@ export function PitchExperience({ children }: PitchExperienceProps) {
         ))}
       </div>
 
-      {/* Progress indicator */}
+      {/* Section indicator (right side) */}
       <nav className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
         {children.map((_, index) => (
           <button
             key={index}
-            onClick={(e) => {
-              e.stopPropagation();
-              goToSection(index);
-            }}
+            onClick={() => goToSection(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? "bg-foreground scale-125"
@@ -96,10 +84,10 @@ export function PitchExperience({ children }: PitchExperienceProps) {
         ))}
       </nav>
 
-      {/* Navigation hint (only on first section) */}
+      {/* Navigation hint (first section only) */}
       {currentSection === 0 && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-pulse z-50">
-          <span className="text-sm">Click or press arrow keys</span>
+          <span className="text-sm">Press arrow keys to navigate</span>
           <ChevronDown className="w-5 h-5" />
         </div>
       )}

@@ -95,19 +95,28 @@ A Next.js-based single-page investor pitch website (not a slide deck).
 ---
 
 ### 2. The Problem
-**Status:** Not started
+**Status:** Complete
 
 **Headline:**
-> [TBD]
+> Infrastructure is the bottleneck.
 
 **Body copy:**
-> [TBD]
+- Teams have budget. They see opportunity. They're ready to build.
+- But infrastructure takes months — disconnected standards, scattered documentation, skill gaps across global teams.
+- CTOs are under massive pressure to ship faster. Infrastructure can't keep up.
 
-**Visual concept:**
-> [TBD]
+**Punchline:**
+> Real financial impact. Real urgency.
+
+**Layout:**
+- Headline large, centered
+- Three short punchy paragraphs
+- Punchline with accent color on "Real urgency."
 
 **Notes:**
--
+- Minimal text, maximum impact
+- Captures the business pain without getting into technical weeds
+- Sets up "Why Now"
 
 ---
 
