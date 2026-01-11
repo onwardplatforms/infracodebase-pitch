@@ -19,7 +19,7 @@ export function Problem() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl"
+          className="max-w-6xl"
         >
           <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
             The problem

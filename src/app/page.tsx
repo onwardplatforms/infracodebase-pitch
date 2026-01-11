@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Problem } from "@/components/sections/Problem";
 import { WhyNow } from "@/components/sections/WhyNow";
 import { ExistingSolutions } from "@/components/sections/ExistingSolutions";
+import { Insight } from "@/components/sections/Insight";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Problem />
       <WhyNow />
       <ExistingSolutions />
+      <Insight />
     </PitchExperience>
   );
 }

@@ -9,7 +9,7 @@ export function Hero() {
       </div>
 
       {/* Main headline */}
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-foreground max-w-4xl">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-foreground max-w-6xl">
         An agentic AI platform for creating production-ready, enterprise-grade cloud infrastructure you can trust.
       </h1>
 
