@@ -6,6 +6,10 @@ import { ExistingSolutions } from "@/components/sections/ExistingSolutions";
 import { Insight } from "@/components/sections/Insight";
 import { Solution } from "@/components/sections/Solution";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Differentiation } from "@/components/sections/Differentiation";
+import { WhyCustomersWillPay } from "@/components/sections/WhyCustomersWillPay";
+import { MarketOpportunity } from "@/components/sections/MarketOpportunity";
+import { Team } from "@/components/sections/Team";
 
 export default function Home() {
   return (
@@ -17,6 +21,10 @@ export default function Home() {
       <Insight />
       <Solution />
       <HowItWorks />
+      <Differentiation />
+      <WhyCustomersWillPay />
+      <MarketOpportunity />
+      <Team />
     </PitchExperience>
   );
 }
