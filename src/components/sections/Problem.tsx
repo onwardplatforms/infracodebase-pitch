@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const journeySteps = [
-  { step: "Request", friction: "Align on whether to even do it" },
-  { step: "Plan", friction: "Architecture diagrams, technical plans, reviews" },
-  { step: "Build", friction: "Code doesn't match the desired architecture" },
-  { step: "Deploy", friction: "CI catches what should've been caught upfront" },
+  { step: "Request", friction: "Goes into a queue behind dozens of other projects the team is already backed up on" },
+  { step: "Plan", friction: "Manual architecture diagrams, scattered documentation, teams operating in silos" },
+  { step: "Code", friction: "Manual operators, mix of cloud console and code, too slow to trust AI without the right systems" },
+  { step: "Ship", friction: "CI catches what should've been caught at code time — negative feedback loops pile up" },
   { step: "Rework", friction: "Back to the beginning" },
 ];
 
@@ -47,8 +47,9 @@ export function Problem() {
           </p>
 
           <div className="space-y-3 flex-1">
-            {["Budget approved", "Opportunity identified", "Team assembled"].map((item) => (
-              <div key={item} className="p-4 rounded-lg bg-card">
+            {["Opportunity identified", "Budget approved", "Team assembled"].map((item) => (
+              <div key={item} className="p-4 rounded-lg bg-card flex items-center gap-3">
+                <span className="text-2xl text-muted-foreground">✓</span>
                 <span className="text-2xl md:text-3xl font-medium text-foreground">{item}</span>
               </div>
             ))}
