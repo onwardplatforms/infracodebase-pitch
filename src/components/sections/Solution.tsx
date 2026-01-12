@@ -106,29 +106,33 @@ function ToolCarousel() {
 
 export function Solution() {
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
-      {/* Top - Label */}
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-muted-foreground text-sm uppercase tracking-wider mb-8"
-      >
-        The solution
-      </motion.p>
-
-      {/* Main content - Text left, Image right */}
-      <div className="flex-1 flex gap-12 items-center">
-        {/* Left - Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-2/5 flex flex-col"
+    <div className="flex h-full w-full px-12 lg:px-20 py-16 gap-12">
+      {/* Left - Text content and carousel */}
+      <div className="w-2/5 flex flex-col">
+        {/* Label and Headline */}
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-muted-foreground text-sm uppercase tracking-wider mb-4"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold leading-tight text-foreground mb-6">
-            The agentic AI platform for enterprise infrastructure design and code.
-          </h2>
+          The solution
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground mb-8"
+        >
+          The agentic AI platform for enterprise infrastructure design and code.
+        </motion.h2>
+
+        {/* Supporting content */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <p className="text-xl text-muted-foreground mb-8">
             Agents generate infrastructure designs and code grounded in your standards, tools, and way of working.
           </p>
@@ -138,32 +142,37 @@ export function Solution() {
                 key={item}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.3 + index * 0.08 }}
+                transition={{ duration: 0.3, delay: 0.4 + index * 0.08 }}
                 className="px-4 py-2 rounded-full bg-card text-foreground text-sm"
               >
                 {item}
               </motion.span>
             ))}
           </div>
-
-          {/* Any cloud. Any language. Any tool. */}
-          <div className="mt-8">
-            <ToolCarousel />
-          </div>
         </motion.div>
 
-        {/* Right - Image placeholder */}
+        {/* Tool carousel at bottom */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-3/5 h-full flex items-center justify-center border-2 border-dashed border-muted-foreground/30 rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-auto"
         >
-          <p className="text-muted-foreground text-sm">
-            [Platform architecture diagram]
-          </p>
+          <ToolCarousel />
         </motion.div>
       </div>
+
+      {/* Right - Image placeholder (full height) */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="w-3/5 flex items-center justify-center border-2 border-dashed border-muted-foreground/30 rounded-lg"
+      >
+        <p className="text-muted-foreground text-sm">
+          [Platform architecture diagram]
+        </p>
+      </motion.div>
     </div>
   );
 }
