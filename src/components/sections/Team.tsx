@@ -6,12 +6,12 @@ const founders = [
   {
     name: "Justin O'Connor",
     role: "Founder / CEO / CTO",
-    description: "A decade in cloud across Azure, AWS, and GCP with some of the largest and most heavily regulated enterprises. Deep technical expertise in building and scaling AI systems. Leads product and strategy.",
+    description: "A decade in cloud across Azure, AWS, and GCP with some of the largest and most heavily regulated enterprises. Deep technical expertise in building and scaling AI systems. Leads product, operations, and business strategy.",
   },
   {
     name: "Tarak",
     role: "Co-Founder / CRO",
-    description: "Worked at large enterprise companies worldwide and built multiple startups. Previously led growth at Brainboard (Y Combinator). Deep network across the cloud ecosystem. Leads growth and sales.",
+    description: "Worked at large enterprise companies worldwide and built multiple startups. Previously led growth at Brainboard (Y Combinator). Deep network across the cloud ecosystem. Leads growth, sales, and marketing.",
   },
 ];
 
