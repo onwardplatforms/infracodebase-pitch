@@ -79,8 +79,35 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       }
     };
 
+    let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout | null = null;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) return;
+
+      if (Math.abs(e.deltaY) > 30) {
+        isScrolling = true;
+
+        if (e.deltaY > 0) {
+          goToNext();
+        } else {
+          goToPrev();
+        }
+
+        // Lock scrolling until gesture ends (no wheel events for 800ms)
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+        }, 800);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("wheel", handleWheel);
+    };
   }, [goToNext, goToPrev, goToSection, totalSections]);
 
   return (

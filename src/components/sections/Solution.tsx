@@ -1,113 +1,169 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame } from "framer-motion";
+import Image from "next/image";
+import { useRef } from "react";
 
-const capabilities = [
-  {
-    title: "Encode",
-    description: "Capture your standards, patterns, and constraints in a form AI can use.",
-  },
-  {
-    title: "Generate",
-    description: "Agents produce infrastructure that meets your requirements from the start.",
-  },
-  {
-    title: "Validate",
-    description: "Every output is checked against your rules before it leaves the platform.",
-  },
-  {
-    title: "Ship",
-    description: "Deploy through your existing pipelines. No new workflows to adopt.",
-  },
+const allTools = [
+  { name: "AWS", src: "/images/awscloud.svg" },
+  { name: "Azure", src: "/images/azurecloud.svg" },
+  { name: "GCP", src: "/images/googlecloud.svg" },
+  { name: "Terraform", src: "/images/terraform.svg" },
+  { name: "OpenTofu", src: "/images/opentofu.svg" },
+  { name: "Pulumi", src: "/images/pulumi.svg" },
+  { name: "GitHub", src: "/images/github-dark.svg" },
+  { name: "GitLab", src: "/images/gitlab.svg" },
+  { name: "Atlassian", src: "/images/atlassian.svg" },
+  { name: "Notion", src: "/images/notion.svg" },
+  { name: "Azure DevOps", src: "/images/azuredevops.svg" },
 ];
+
+function ToolCarousel() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const toolCount = allTools.length;
+  const itemWidth = 76; // 36px image + 40px gap
+  const doubledTools = [...allTools, ...allTools];
+
+  useAnimationFrame(() => {
+    if (!containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+
+    let closestIndex = -1;
+    let closestDistance = Infinity;
+
+    // Find the closest item to center
+    itemRefs.current.forEach((item, index) => {
+      if (!item) return;
+      const itemRect = item.getBoundingClientRect();
+      const itemCenter = itemRect.left + itemRect.width / 2;
+      const distance = Math.abs(containerCenter - itemCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    // Apply styles - only the closest one is highlighted
+    itemRefs.current.forEach((item, index) => {
+      if (!item) return;
+      const isCenter = index === closestIndex;
+
+      item.style.transform = isCenter ? "scale(1.5)" : "scale(1)";
+      item.style.opacity = isCenter ? "1" : "0.4";
+      item.style.filter = isCenter ? "grayscale(0%)" : "grayscale(100%)";
+    });
+  });
+
+  return (
+    <div>
+      <p className="text-lg text-foreground font-medium mb-4">
+        Any cloud. Any language. Any tool.
+      </p>
+      <div ref={containerRef} className="relative overflow-hidden w-full">
+        {/* Gradient masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10" />
+
+        {/* Scrolling container */}
+        <motion.div
+          className="flex gap-10 items-center py-6"
+          animate={{ x: [0, -itemWidth * toolCount] }}
+          transition={{
+            x: {
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
+        >
+          {doubledTools.map((tool, index) => (
+            <div
+              key={`${tool.name}-${index}`}
+              ref={(el) => { itemRefs.current[index] = el; }}
+              className="flex-shrink-0 transition-all duration-150"
+              style={{
+                opacity: 0.4,
+                filter: "grayscale(100%)",
+              }}
+            >
+              <Image
+                src={tool.src}
+                alt={tool.name}
+                width={36}
+                height={36}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
 export function Solution() {
   return (
     <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
-      {/* Top - Headline */}
-      <div className="flex-shrink-0 mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-6xl"
-        >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
-            The solution
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
-            Infracodebase teaches AI how{" "}
-            <span className="italic">your</span> organization builds infrastructure.
-          </h2>
-        </motion.div>
-      </div>
-
-      {/* Middle - Subhead and capabilities */}
-      <div className="flex-1 flex flex-col">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-xl text-muted-foreground mb-10 max-w-4xl"
-        >
-          We built a platform that turns organizational knowledge into AI guardrails.
-          Your security policies, architecture patterns, and compliance requirements
-          become the rules AI follows at generation time.
-        </motion.p>
-
-        {/* Capability cards */}
-        <div className="grid grid-cols-4 gap-6 mb-10">
-          {capabilities.map((cap, index) => (
-            <motion.div
-              key={cap.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-              className="p-6 rounded-lg bg-card"
-            >
-              <p className="text-2xl font-semibold text-foreground mb-3">{cap.title}</p>
-              <p className="text-muted-foreground">{cap.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Key differentiators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex gap-12 mt-auto"
-        >
-          <div className="flex-1">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-3">
-              What changes
-            </p>
-            <p className="text-lg text-foreground">
-              Problems are solved at creation time, not caught downstream.
-              No more rework cycles. No more security reviews that block releases.
-            </p>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-3">
-              What stays the same
-            </p>
-            <p className="text-lg text-foreground">
-              Your CI/CD pipelines. Your cloud providers. Your security tools.
-              Infracodebase works with what you have.
-            </p>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom - Punchline */}
+      {/* Top - Label */}
       <motion.p
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className="mt-10 text-2xl md:text-3xl text-foreground font-semibold"
+        transition={{ duration: 0.5 }}
+        className="text-muted-foreground text-sm uppercase tracking-wider mb-8"
       >
-        Compliant by default. Consistent across teams. Ready to ship.
+        The solution
       </motion.p>
+
+      {/* Main content - Text left, Image right */}
+      <div className="flex-1 flex gap-12 items-center">
+        {/* Left - Text */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="w-2/5 flex flex-col"
+        >
+          <h2 className="text-4xl md:text-5xl font-semibold leading-tight text-foreground mb-6">
+            The agentic AI platform for enterprise infrastructure design and code.
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Agents generate infrastructure designs and code grounded in your standards, tools, and way of working.
+          </p>
+          <div className="flex gap-3 flex-wrap">
+            {["Compliant by default", "Consistent across teams", "Ready to ship"].map((item, index) => (
+              <motion.span
+                key={item}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.3 + index * 0.08 }}
+                className="px-4 py-2 rounded-full bg-card text-foreground text-sm"
+              >
+                {item}
+              </motion.span>
+            ))}
+          </div>
+
+          {/* Any cloud. Any language. Any tool. */}
+          <div className="mt-8">
+            <ToolCarousel />
+          </div>
+        </motion.div>
+
+        {/* Right - Image placeholder */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-3/5 h-full flex items-center justify-center border-2 border-dashed border-muted-foreground/30 rounded-lg"
+        >
+          <p className="text-muted-foreground text-sm">
+            [Platform architecture diagram]
+          </p>
+        </motion.div>
+      </div>
     </div>
   );
 }
