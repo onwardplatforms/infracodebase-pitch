@@ -10,6 +10,7 @@ import { Differentiation } from "@/components/sections/Differentiation";
 import { WhyCustomersWillPay } from "@/components/sections/WhyCustomersWillPay";
 import { MarketOpportunity } from "@/components/sections/MarketOpportunity";
 import { Traction } from "@/components/sections/Traction";
+import { GoToMarket } from "@/components/sections/GoToMarket";
 import { Team } from "@/components/sections/Team";
 import { TheAsk } from "@/components/sections/TheAsk";
 
@@ -27,6 +28,7 @@ export default function Home() {
       <WhyCustomersWillPay />
       <MarketOpportunity />
       <Traction />
+      <GoToMarket />
       <Team />
       <TheAsk />
     </PitchExperience>
