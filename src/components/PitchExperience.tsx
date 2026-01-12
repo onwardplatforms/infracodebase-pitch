@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, ReactNode } from "react";
+import { useState, useEffect, useCallback, useRef, ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import {
   Tooltip,
@@ -35,6 +35,9 @@ export function PitchExperience({ children }: PitchExperienceProps) {
     new Array(children.length).fill(0).map((_, i) => i === 0 ? 1 : 0)
   );
   const totalSections = children.length;
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const isSwiping = useRef(false);
 
   // Increment visit count when section changes
   useEffect(() => {
@@ -104,11 +107,53 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       }
     };
 
+    // Touch handlers for mobile swipe gestures
+    const handleTouchStart = (e: TouchEvent) => {
+      if (isSwiping.current) return;
+      touchStartY.current = e.touches[0].clientY;
+      touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (touchStartY.current === null || touchStartX.current === null) return;
+      if (isSwiping.current) return;
+
+      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaY = touchStartY.current - touchEndY;
+      const deltaX = touchStartX.current - touchEndX;
+
+      // Only trigger if vertical swipe is more significant than horizontal
+      // and the swipe distance is meaningful (at least 50px)
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+        isSwiping.current = true;
+
+        if (deltaY > 0) {
+          goToNext(); // Swipe up -> next section
+        } else {
+          goToPrev(); // Swipe down -> previous section
+        }
+
+        // Reset swipe lock after animation
+        setTimeout(() => {
+          isSwiping.current = false;
+        }, 600);
+      }
+
+      touchStartY.current = null;
+      touchStartX.current = null;
+    };
+
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [goToNext, goToPrev, goToSection, totalSections]);
 
@@ -129,9 +174,9 @@ export function PitchExperience({ children }: PitchExperienceProps) {
         ))}
       </div>
 
-      {/* Section indicator (right side) */}
+      {/* Section indicator (right side) - hidden on mobile */}
       <TooltipProvider delayDuration={100}>
-        <nav className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50">
+        <nav className="hidden md:flex fixed right-4 lg:right-6 top-1/2 -translate-y-1/2 flex-col gap-2 z-50">
           {children.map((_, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
@@ -156,13 +201,14 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       {/* Navigation hint (first section only) */}
       {currentSection === 0 && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-pulse z-50">
-          <span className="text-sm">Press arrow keys to navigate</span>
+          <span className="text-sm hidden md:block">Press arrow keys to navigate</span>
+          <span className="text-sm md:hidden">Swipe up to continue</span>
           <ChevronDown className="w-5 h-5" />
         </div>
       )}
 
       {/* Section counter */}
-      <div className="fixed bottom-6 right-6 text-sm text-muted-foreground z-50">
+      <div className="fixed bottom-4 md:bottom-6 right-4 md:right-6 text-xs md:text-sm text-muted-foreground z-50">
         {currentSection + 1} / {totalSections}
       </div>
     </div>

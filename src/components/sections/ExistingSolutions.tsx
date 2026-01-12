@@ -78,34 +78,34 @@ export function ExistingSolutions() {
   const [showCompetitors, setShowCompetitors] = useState(false);
 
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16 relative">
+    <div className="flex flex-col h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-16 relative overflow-y-auto md:overflow-hidden">
       {/* Top - Headline */}
-      <div className="flex-shrink-0 mb-12">
-        <div className="flex justify-between items-start">
+      <div className="flex-shrink-0 mb-6 md:mb-12">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-5xl"
           >
-            <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+            <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
               Why existing solutions fall short
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground">
               Enterprises are trying everything.
             </h2>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-muted-foreground mt-2">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-muted-foreground mt-1 md:mt-2">
               None of it is working.
             </h2>
           </motion.div>
 
-          {/* Direct competitors button */}
+          {/* Direct competitors button - hidden on mobile */}
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             onClick={() => setShowCompetitors(true)}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-4 py-2"
+            className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-4 py-2"
           >
             Who else is building here?
           </motion.button>
@@ -175,29 +175,29 @@ export function ExistingSolutions() {
       </AnimatePresence>
 
       {/* Four approaches - 2x2 grid */}
-      <div className="flex-1 flex flex-col gap-6">
-        <div className="grid grid-cols-2 gap-6">
+      <div className="flex-1 flex flex-col gap-3 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
           {approaches.map((approach, index) => (
             <motion.div
               key={approach.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="p-6 rounded-lg bg-card"
+              className="p-4 md:p-6 rounded-lg bg-card"
             >
-              <p className="text-xl font-semibold text-foreground mb-1">{approach.name}</p>
-              <div className="flex gap-2 mb-4">
+              <p className="text-base md:text-xl font-semibold text-foreground mb-1">{approach.name}</p>
+              <div className="flex gap-1.5 md:gap-2 mb-2 md:mb-4 flex-wrap">
                 {approach.badges.map((badge) => (
                   <span
                     key={badge}
-                    className="px-2 py-0.5 rounded bg-muted text-muted-foreground text-sm"
+                    className="px-1.5 md:px-2 py-0.5 rounded bg-muted text-muted-foreground text-xs md:text-sm"
                   >
                     {badge}
                   </span>
                 ))}
               </div>
-              <p className="text-foreground mb-4">{approach.detail}</p>
-              <p className="text-sm text-muted-foreground italic">{approach.rootIssue}</p>
+              <p className="text-xs md:text-base text-foreground mb-2 md:mb-4">{approach.detail}</p>
+              <p className="text-xs md:text-sm text-muted-foreground italic">{approach.rootIssue}</p>
             </motion.div>
           ))}
         </div>

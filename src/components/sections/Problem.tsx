@@ -110,35 +110,35 @@ export function Problem() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
+    <div className="flex flex-col h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-16 overflow-y-auto md:overflow-hidden">
       {/* Top - The Problem Statement */}
-      <div className="flex-shrink-0 mb-12">
+      <div className="flex-shrink-0 mb-6 md:mb-12">
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-muted-foreground text-sm uppercase tracking-wider mb-4"
+          className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4"
         >
           The problem
         </motion.p>
 
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground mb-4">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground mb-2 md:mb-4">
               Everyone wants speed.
             </h2>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-muted-foreground">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-muted-foreground">
               Trust is the limiting factor.
             </h2>
           </motion.div>
 
-          {/* Fixed-size container for stat cards */}
-          <div className="flex-shrink-0 w-[612px] h-[140px] relative">
+          {/* Responsive stat cards container */}
+          <div className="flex-shrink-0 w-full lg:w-[612px] h-auto lg:h-[140px] relative">
             <AnimatePresence mode="wait">
               {expandedCard === null ? (
                 /* Collapsed: 4 tiles */
@@ -148,7 +148,7 @@ export function Problem() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="flex gap-3 absolute inset-0"
+                  className="grid grid-cols-2 lg:flex gap-2 md:gap-3"
                 >
                   {statCards.map((card, index) => (
                     <motion.div
@@ -156,18 +156,18 @@ export function Problem() {
                       initial={hasAnimated ? false : { opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: hasAnimated ? 0 : 0.2 + index * 0.1 }}
-                      className="w-36 p-4 rounded-lg bg-card text-right cursor-pointer hover:bg-card/80 transition-colors"
+                      className="w-full lg:w-36 p-3 md:p-4 rounded-lg bg-card text-right cursor-pointer hover:bg-card/80 transition-colors"
                       onClick={() => setExpandedCard(card.id)}
                     >
-                      <p className="text-4xl font-semibold text-foreground tabular-nums">
+                      <p className="text-2xl md:text-4xl font-semibold text-foreground tabular-nums">
                         {hasAnimated ? (
                           <>{card.value}{card.suffix}</>
                         ) : (
                           <><AnimatedCounter target={card.value} duration={card.duration} />{card.suffix}</>
                         )}
                       </p>
-                      <p className="text-sm text-muted-foreground mt-1">{card.label}</p>
-                      <p className="text-xs text-muted-foreground/60 mt-1">{card.source}</p>
+                      <p className="text-xs md:text-sm text-muted-foreground mt-1">{card.label}</p>
+                      <p className="text-xs text-muted-foreground/60 mt-0.5 md:mt-1">{card.source}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -211,34 +211,34 @@ export function Problem() {
         </div>
       </div>
 
-      {/* Bottom - Supporting Evidence */}
-      <div className="flex-1 flex gap-8">
+      {/* Bottom - Supporting Evidence - hidden on mobile for cleaner view */}
+      <div className="hidden md:flex flex-1 flex-col md:flex-row gap-4 md:gap-8">
         {/* Left - Business context */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-1/4 flex flex-col"
+          className="w-full md:w-1/4 flex flex-col"
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
             The business is ready
           </p>
 
-          <div className="flex gap-3 mb-6">
+          <div className="flex gap-2 md:gap-3 mb-4 md:mb-6 flex-wrap">
             {["Funded", "Staffed", "Aligned", "Motivated"].map((item, index) => (
               <motion.div
                 key={item}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="px-3 py-1.5 rounded-full bg-card text-sm font-medium text-foreground"
+                className="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-card text-xs md:text-sm font-medium text-foreground"
               >
                 {item}
               </motion.div>
             ))}
           </div>
 
-          <p className="text-lg text-foreground font-medium">
+          <p className="text-base md:text-lg text-foreground font-medium">
             Nothing moves until the cloud shows up.
           </p>
         </motion.div>
@@ -250,38 +250,45 @@ export function Problem() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex-1 flex flex-col"
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-6">
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-6">
             What happens next
           </p>
 
           {/* Steps */}
           <div className="flex-1">
-            <div className="space-y-2">
+            <div className="space-y-1 md:space-y-2">
               {journeySteps.map((item, index) => (
                 <motion.div
                   key={item.step}
-                  className="flex items-center gap-4"
+                  className="flex items-center gap-2 md:gap-4"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                 >
                   {/* Dot */}
-                  <div className="w-2 h-2 rounded-full bg-muted-foreground flex-shrink-0" />
+                  <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-muted-foreground flex-shrink-0" />
 
                   {/* Content card */}
-                  <div className="flex-1 flex items-baseline gap-4 py-5 px-4 rounded-lg bg-card">
-                    <p className="w-20 flex-shrink-0 text-base font-medium text-foreground">{item.step}</p>
-                    <p className="text-sm text-muted-foreground">{item.friction}</p>
+                  <div className="flex-1 flex items-baseline gap-2 md:gap-4 py-2 md:py-5 px-2 md:px-4 rounded-lg bg-card">
+                    <p className="w-14 md:w-20 flex-shrink-0 text-xs md:text-base font-medium text-foreground">{item.step}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 md:line-clamp-none">{item.friction}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          <p className="mt-8 text-2xl text-foreground">
+          <p className="mt-4 md:mt-8 text-lg md:text-2xl text-foreground">
             Months pass. Costs grow. Trust erodes.
           </p>
         </motion.div>
+      </div>
+
+      {/* Mobile summary - shown only on mobile */}
+      <div className="md:hidden mt-4">
+        <p className="text-lg text-foreground font-medium text-center">
+          Months pass. Costs grow. Trust erodes.
+        </p>
       </div>
     </div>
   );

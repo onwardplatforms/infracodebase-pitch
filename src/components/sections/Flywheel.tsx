@@ -32,26 +32,26 @@ const flywheelSteps = [
 
 export function Flywheel() {
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-12">
+    <div className="flex flex-col h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-12 overflow-y-auto md:overflow-hidden">
       {/* Top - Headline */}
-      <div className="flex-shrink-0 mb-8">
+      <div className="flex-shrink-0 mb-4 md:mb-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
             Growth strategy
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground">
             Focused on durable growth.
           </h2>
         </motion.div>
       </div>
 
       {/* Flywheel visualization */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="relative w-[600px] h-[500px]">
+      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0">
+        <div className="relative w-full max-w-[300px] md:max-w-[400px] lg:max-w-[600px] h-[250px] md:h-[350px] lg:h-[500px]">
           {/* Outer circle - the flywheel arrow */}
           <motion.svg
             initial={{ opacity: 0 }}
@@ -106,11 +106,11 @@ export function Flywheel() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="absolute -top-20 left-1/2 -translate-x-1/2 text-center"
+            className="absolute -top-8 md:-top-16 lg:-top-20 left-1/2 -translate-x-1/2 text-center"
           >
-            <Users className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-            <p className="text-lg text-foreground">Win the</p>
-            <p className="text-2xl font-semibold text-foreground">Practitioner</p>
+            <Users className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 mx-auto mb-1 md:mb-2 text-muted-foreground" />
+            <p className="text-sm md:text-base lg:text-lg text-foreground">Win the</p>
+            <p className="text-base md:text-xl lg:text-2xl font-semibold text-foreground">Practitioner</p>
           </motion.div>
 
           {/* Bottom right - Ecosystem */}
@@ -118,11 +118,11 @@ export function Flywheel() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="absolute bottom-8 -right-4 text-center"
+            className="absolute bottom-4 md:bottom-6 lg:bottom-8 right-0 md:-right-2 lg:-right-4 text-center"
           >
-            <Network className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-            <p className="text-lg text-foreground">Standardize the</p>
-            <p className="text-2xl font-semibold text-foreground">Ecosystem</p>
+            <Network className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 mx-auto mb-1 md:mb-2 text-muted-foreground" />
+            <p className="text-sm md:text-base lg:text-lg text-foreground">Standardize the</p>
+            <p className="text-base md:text-xl lg:text-2xl font-semibold text-foreground">Ecosystem</p>
           </motion.div>
 
           {/* Bottom left - Customer */}
@@ -130,11 +130,11 @@ export function Flywheel() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="absolute bottom-8 -left-4 text-center"
+            className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-0 md:-left-2 lg:-left-4 text-center"
           >
-            <CheckCircle className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-            <p className="text-lg text-foreground">Enable the</p>
-            <p className="text-2xl font-semibold text-foreground">Customer</p>
+            <CheckCircle className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 mx-auto mb-1 md:mb-2 text-muted-foreground" />
+            <p className="text-sm md:text-base lg:text-lg text-foreground">Enable the</p>
+            <p className="text-base md:text-xl lg:text-2xl font-semibold text-foreground">Customer</p>
           </motion.div>
         </div>
 
@@ -143,7 +143,7 @@ export function Flywheel() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="ml-12 space-y-4 w-80"
+          className="lg:ml-12 space-y-2 md:space-y-4 w-full lg:w-80"
         >
           {flywheelSteps.map((step, index) => (
             <motion.div
@@ -151,12 +151,12 @@ export function Flywheel() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
-              className="p-4 rounded-lg bg-card"
+              className="p-3 md:p-4 rounded-lg bg-card"
             >
-              <p className="text-foreground font-semibold mb-1">
+              <p className="text-foreground font-semibold mb-1 text-sm md:text-base">
                 {step.label} {step.emphasis}
               </p>
-              <p className="text-sm text-muted-foreground">{step.detail}</p>
+              <p className="text-xs md:text-sm text-muted-foreground">{step.detail}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -167,9 +167,9 @@ export function Flywheel() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1 }}
-        className="flex-shrink-0 pt-6 border-t border-border"
+        className="flex-shrink-0 pt-4 md:pt-6 border-t border-border mt-4 md:mt-0"
       >
-        <p className="text-lg text-foreground">
+        <p className="text-sm md:text-lg text-foreground">
           Each turn of the flywheel makes the next turn easier. Practitioners drive adoption, adoption drives enterprise deals, enterprise standards attract more practitioners.
         </p>
       </motion.div>

@@ -66,18 +66,18 @@ export function WhyNow() {
   };
 
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
+    <div className="flex flex-col h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-16 overflow-y-auto md:overflow-hidden">
       {/* Top - Headline + Intro */}
-      <div className="flex-shrink-0 mb-8">
+      <div className="flex-shrink-0 mb-4 md:mb-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
             Why now
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground">
             The right problem at the right time.
           </h2>
         </motion.div>
@@ -85,7 +85,7 @@ export function WhyNow() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl text-muted-foreground mt-6 max-w-4xl"
+          className="text-sm md:text-xl text-muted-foreground mt-3 md:mt-6 max-w-4xl"
         >
           AI is moving from experimentation to expectation. Teams want it to help build
           infrastructure faster, but the cost of getting it wrong is too high. Enterprises
@@ -94,7 +94,7 @@ export function WhyNow() {
       </div>
 
       {/* Expandable points */}
-      <div className="flex-1 flex flex-col gap-2 overflow-hidden">
+      <div className="flex-1 flex flex-col gap-1 md:gap-2 overflow-hidden">
         {points.map((point, index) => (
           <motion.div
             key={point.id}
@@ -104,19 +104,19 @@ export function WhyNow() {
           >
             <button
               onClick={() => toggleExpand(point.id)}
-              className="w-full text-left flex items-center gap-4 py-3 group"
+              className="w-full text-left flex items-center gap-2 md:gap-4 py-2 md:py-3 group"
             >
               <motion.div
                 animate={{ rotate: expandedId === point.id ? 90 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
               </motion.div>
-              <p className="text-xl text-foreground font-medium group-hover:text-foreground/80 transition-colors">
+              <p className="text-sm md:text-xl text-foreground font-medium group-hover:text-foreground/80 transition-colors">
                 {point.headline}
               </p>
               {point.stats && expandedId !== point.id && (
-                <div className="ml-auto flex gap-6">
+                <div className="ml-auto hidden md:flex gap-6">
                   {point.stats.slice(0, 2).map((stat) => (
                     <span key={stat.label} className="text-lg text-muted-foreground">
                       <span className="font-semibold text-foreground">{stat.value}</span>{" "}
@@ -136,17 +136,17 @@ export function WhyNow() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="ml-9 pb-4">
+                  <div className="ml-6 md:ml-9 pb-3 md:pb-4">
                     {point.stats ? (
-                      <div className="flex justify-between items-start">
-                        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <p className="text-xs md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                           {point.detail}
                         </p>
-                        <div className="flex gap-8 flex-shrink-0 ml-12">
+                        <div className="flex gap-4 md:gap-8 flex-shrink-0 md:ml-12">
                           {point.stats.map((stat) => (
                             <div key={stat.label} className="text-right">
-                              <p className="text-3xl font-semibold text-foreground">{stat.value}</p>
-                              <p className="text-sm text-muted-foreground">{stat.label}</p>
+                              <p className="text-xl md:text-3xl font-semibold text-foreground">{stat.value}</p>
+                              <p className="text-xs md:text-sm text-muted-foreground">{stat.label}</p>
                               {"source" in stat && (
                                 <p className="text-xs text-muted-foreground/60">{stat.source}</p>
                               )}
@@ -155,7 +155,7 @@ export function WhyNow() {
                         </div>
                       </div>
                     ) : (
-                      <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+                      <p className="text-xs md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
                         {point.detail}
                       </p>
                     )}

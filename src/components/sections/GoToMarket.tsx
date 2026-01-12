@@ -36,28 +36,28 @@ const stakeholders = [
 
 export function GoToMarket() {
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-12">
+    <div className="flex flex-col h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-12 overflow-y-auto md:overflow-hidden">
       {/* Top - Headline */}
-      <div className="flex-shrink-0 mb-8">
+      <div className="flex-shrink-0 mb-4 md:mb-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
             Go-to-market
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground">
             Bottoms-up adoption. Top-down sales.
           </h2>
-          <p className="text-xl text-muted-foreground mt-4 max-w-4xl">
+          <p className="text-sm md:text-xl text-muted-foreground mt-2 md:mt-4 max-w-4xl">
             We build demand through the practitioners who use IaC every day, then convert that demand through enterprise sales to cloud leaders who need to prove AI delivers real value.
           </p>
         </motion.div>
       </div>
 
-      {/* Two columns - Bottoms-up and Top-down */}
-      <div className="flex-1 flex gap-8">
+      {/* Two columns - Bottoms-up and Top-down - simplified on mobile */}
+      <div className="flex-1 flex flex-col md:flex-row gap-4 md:gap-8">
         {/* Bottoms-up */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -65,24 +65,24 @@ export function GoToMarket() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex-1 flex flex-col"
         >
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">
+          <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider mb-2 md:mb-4">
             Bottoms-up
           </p>
-          <div className="space-y-3 flex-1">
+          <div className="space-y-2 md:space-y-3 flex-1">
             {bottomsUp.map((item, index) => (
               <motion.div
                 key={item.step}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 md:gap-3"
               >
-                <div className="w-6 h-6 rounded-full bg-card flex items-center justify-center text-xs text-muted-foreground flex-shrink-0">
+                <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-card flex items-center justify-center text-xs text-muted-foreground flex-shrink-0">
                   {index + 1}
                 </div>
-                <div className="flex-1 p-3 rounded-lg bg-card">
-                  <p className="text-foreground font-medium">{item.step}</p>
-                  <p className="text-sm text-muted-foreground">{item.detail}</p>
+                <div className="flex-1 p-2 md:p-3 rounded-lg bg-card">
+                  <p className="text-xs md:text-base text-foreground font-medium">{item.step}</p>
+                  <p className="hidden md:block text-sm text-muted-foreground">{item.detail}</p>
                 </div>
               </motion.div>
             ))}
@@ -96,36 +96,36 @@ export function GoToMarket() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex-1 flex flex-col"
         >
-          <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">
+          <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider mb-2 md:mb-4">
             Top-down
           </p>
-          <div className="space-y-3 flex-1">
+          <div className="space-y-2 md:space-y-3 flex-1">
             {topDown.map((item, index) => (
               <motion.div
                 key={item.step}
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-2 md:gap-3"
               >
-                <div className="w-6 h-6 rounded-full bg-card flex items-center justify-center text-xs text-muted-foreground flex-shrink-0">
+                <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-card flex items-center justify-center text-xs text-muted-foreground flex-shrink-0">
                   {index + 1}
                 </div>
-                <div className="flex-1 p-3 rounded-lg bg-card">
-                  <p className="text-foreground font-medium">{item.step}</p>
-                  <p className="text-sm text-muted-foreground">{item.detail}</p>
+                <div className="flex-1 p-2 md:p-3 rounded-lg bg-card">
+                  <p className="text-xs md:text-base text-foreground font-medium">{item.step}</p>
+                  <p className="hidden md:block text-sm text-muted-foreground">{item.detail}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* The Bridge - Stakeholders */}
+        {/* The Bridge - Stakeholders - hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="w-1/3 flex flex-col"
+          className="hidden lg:flex w-1/3 flex-col"
         >
           <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">
             Multi-stakeholder buy-in
@@ -148,28 +148,28 @@ export function GoToMarket() {
         </motion.div>
       </div>
 
-      {/* Bottom - The flywheel */}
+      {/* Bottom - The flywheel - simplified on mobile */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.7 }}
-        className="flex-shrink-0 pt-6 mt-6 border-t border-border"
+        className="flex-shrink-0 pt-4 md:pt-6 mt-4 md:mt-6 border-t border-border"
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <p className="text-lg text-foreground">
-              <span className="font-semibold">Users</span> become <span className="font-semibold">champions</span>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2 md:gap-8">
+            <p className="text-sm md:text-lg text-foreground">
+              <span className="font-semibold">Users</span> → <span className="font-semibold">champions</span>
             </p>
-            <span className="text-muted-foreground">→</span>
-            <p className="text-lg text-foreground">
-              <span className="font-semibold">Champions</span> become <span className="font-semibold">buyers</span>
+            <span className="hidden md:inline text-muted-foreground">→</span>
+            <p className="text-sm md:text-lg text-foreground">
+              <span className="font-semibold">Champions</span> → <span className="font-semibold">buyers</span>
             </p>
-            <span className="text-muted-foreground">→</span>
-            <p className="text-lg text-foreground">
-              <span className="font-semibold">Buyers</span> become <span className="font-semibold">references</span>
+            <span className="hidden md:inline text-muted-foreground">→</span>
+            <p className="text-sm md:text-lg text-foreground">
+              <span className="font-semibold">Buyers</span> → <span className="font-semibold">references</span>
             </p>
           </div>
-          <p className="text-muted-foreground text-sm">The enterprise flywheel</p>
+          <p className="text-muted-foreground text-xs md:text-sm">The enterprise flywheel</p>
         </div>
       </motion.div>
     </div>

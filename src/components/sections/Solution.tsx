@@ -60,7 +60,7 @@ function ToolCarousel() {
 
   return (
     <div>
-      <p className="text-lg text-foreground font-medium mb-4">
+      <p className="text-sm md:text-lg text-foreground font-medium mb-2 md:mb-4">
         Any cloud. Any language. Any tool.
       </p>
       <div ref={containerRef} className="relative overflow-hidden w-full">
@@ -106,15 +106,15 @@ function ToolCarousel() {
 
 export function Solution() {
   return (
-    <div className="flex h-full w-full px-12 lg:px-20 py-16 gap-12">
+    <div className="flex flex-col lg:flex-row h-full w-full px-4 md:px-12 lg:px-20 py-8 md:py-16 gap-6 lg:gap-12 overflow-y-auto lg:overflow-hidden">
       {/* Left - Text content and carousel */}
-      <div className="w-2/5 flex flex-col">
+      <div className="w-full lg:w-2/5 flex flex-col">
         {/* Label and Headline */}
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-muted-foreground text-sm uppercase tracking-wider mb-4"
+          className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4"
         >
           The solution
         </motion.p>
@@ -122,7 +122,7 @@ export function Solution() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground mb-8"
+          className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight text-foreground mb-4 md:mb-8"
         >
           The agentic AI platform for enterprise infra design and code.
         </motion.h2>
@@ -133,17 +133,17 @@ export function Solution() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="text-xl text-muted-foreground mb-8">
+          <p className="text-base md:text-xl text-muted-foreground mb-4 md:mb-8">
             Agents generate infrastructure designs and code grounded in your standards, tools, and way of working.
           </p>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-2 md:gap-3 flex-wrap">
             {["Compliant by default", "Consistent across teams", "Ready to ship"].map((item, index) => (
               <motion.span
                 key={item}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.4 + index * 0.08 }}
-                className="px-4 py-2 rounded-full bg-card text-foreground text-sm"
+                className="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-card text-foreground text-xs md:text-sm"
               >
                 {item}
               </motion.span>
@@ -167,14 +167,14 @@ export function Solution() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="w-3/5 flex items-center justify-center"
+        className="w-full lg:w-3/5 flex items-center justify-center"
       >
         <Image
           src="/images/infracodebase-arch.png"
           alt="Infracodebase Architecture"
           width={800}
           height={800}
-          className="object-contain max-h-full"
+          className="object-contain max-h-[300px] md:max-h-[500px] lg:max-h-full w-full"
         />
       </motion.div>
     </div>
