@@ -37,8 +37,8 @@ const approaches = [
 
 const comparisonRows = [
   {
-    dimension: "Approach",
-    infracodebase: "AI agents + enterprise standards integration",
+    dimension: "Core approach",
+    infracodebase: "AI-native orchestration with declarative sub-agents",
     pulumi: "Natural language to Pulumi code",
     systemInit: "Digital twin modeling + AI agents",
     firefly: "Cloud discovery + IaC from existing",
@@ -46,35 +46,75 @@ const comparisonRows = [
   },
   {
     dimension: "IaC support",
-    infracodebase: "Terraform, Pulumi, OpenTofu, CDK+",
+    infracodebase: "Any infrastructure code language",
     pulumi: "Pulumi only",
     systemInit: "Proprietary (replaces IaC)",
     firefly: "Terraform, Pulumi, CloudFormation",
     brainboard: "Terraform only",
   },
   {
-    dimension: "Enterprise standards",
-    infracodebase: "Built-in, customizable",
+    dimension: "Enterprise governance",
+    infracodebase: "Hierarchical: Enterprise → Workspace → Personal",
     pulumi: "None",
     systemInit: "Limited",
     firefly: "Policy enforcement only",
     brainboard: "Limited",
   },
   {
-    dimension: "Design + Code",
-    infracodebase: "Both, connected",
-    pulumi: "Code only",
-    systemInit: "Visual modeling",
-    firefly: "Code only (brownfield)",
-    brainboard: "Visual → Code",
+    dimension: "Design + Code creation",
+    infracodebase: "Both, fully agentic: diagrams, docs, code",
+    pulumi: "Code only (AI-generated)",
+    systemInit: "Visual modeling only",
+    firefly: "Code only (brownfield focus)",
+    brainboard: "Visual → Code (manual drag-and-drop)",
+  },
+  {
+    dimension: "AI governance",
+    infracodebase: "Proactive: standards enforced at generation",
+    pulumi: "None",
+    systemInit: "Limited",
+    firefly: "Reactive: policy checks post-generation",
+    brainboard: "None",
+  },
+  {
+    dimension: "Pattern adoption",
+    infracodebase: "Adapts to existing code, rules, and practices",
+    pulumi: "Static prompts",
+    systemInit: "Fixed patterns",
+    firefly: "No pattern adoption",
+    brainboard: "Template-based",
+  },
+  {
+    dimension: "Compliance & security",
+    infracodebase: "Auto-generates diagrams, docs, security assessments",
+    pulumi: "None",
+    systemInit: "Limited",
+    firefly: "Policy checks only",
+    brainboard: "None",
+  },
+  {
+    dimension: "Agent extensibility",
+    infracodebase: "Customers can create custom declarative agents",
+    pulumi: "Fixed AI model",
+    systemInit: "Fixed agent capabilities",
+    firefly: "No AI agents",
+    brainboard: "No AI agents",
   },
   {
     dimension: "Adoption model",
-    infracodebase: "Works with existing tools",
-    pulumi: "Pulumi ecosystem",
+    infracodebase: "Integrates with existing IT investments",
+    pulumi: "Requires Pulumi ecosystem migration",
     systemInit: "Rip and replace",
-    firefly: "Adds to existing",
-    brainboard: "Terraform ecosystem",
+    firefly: "Adds to existing (brownfield)",
+    brainboard: "Terraform ecosystem only",
+  },
+  {
+    dimension: "Enterprise readiness",
+    infracodebase: "Built for enterprise from day one",
+    pulumi: "Developer-focused",
+    systemInit: "Early stage",
+    firefly: "Policy-focused",
+    brainboard: "Visual design tool",
   },
 ];
 
@@ -122,7 +162,7 @@ export function ExistingSolutions() {
             onClick={() => setShowCompetitors(true)}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-4 py-2 flex-shrink-0"
           >
-            Who else is building here?
+            How do we compare?
           </motion.button>
         </div>
       </div>
@@ -140,11 +180,14 @@ export function ExistingSolutions() {
             <div className="flex justify-between items-start mb-6 md:mb-8">
               <div>
                 <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider mb-2 md:mb-4">
-                  Direct competitors
+                  Competitive landscape
                 </p>
                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight text-foreground">
-                  Who else is building here?
+                  Why enterprises choose Infracodebase
                 </h2>
+                <p className="text-sm md:text-base text-muted-foreground mt-2 md:mt-4">
+                  The only AI-native platform purpose-built for enterprise infrastructure
+                </p>
               </div>
               <button
                 onClick={() => setShowCompetitors(false)}
@@ -158,33 +201,36 @@ export function ExistingSolutions() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex-1 overflow-auto flex items-center justify-center"
+              className="flex-1 overflow-hidden flex items-center justify-center"
             >
-              <div className="bg-card/80 backdrop-blur-sm rounded-lg p-4 md:p-6 max-w-6xl w-full">
-                <table className="w-full text-xs md:text-sm">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium w-24 md:w-36"></th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 font-semibold text-foreground bg-foreground/5">Infracodebase</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium">Pulumi AI</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium">System Initiative</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium">Firefly</th>
-                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium">Brainboard</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {comparisonRows.map((row, index) => (
-                      <tr key={row.dimension} className={index < comparisonRows.length - 1 ? "border-b border-border/50" : ""}>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground font-medium">{row.dimension}</td>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-foreground bg-foreground/5 font-medium">{row.infracodebase}</td>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.pulumi}</td>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.systemInit}</td>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.firefly}</td>
-                        <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.brainboard}</td>
+              <div className="bg-card/80 backdrop-blur-sm rounded-lg p-4 md:p-6 max-w-6xl w-full h-full flex flex-col">
+                {/* Scrollable table container */}
+                <div className="flex-1 overflow-auto">
+                  <table className="w-full text-xs md:text-sm border-collapse">
+                    <thead className="sticky top-0 z-10">
+                      <tr className="border-b border-border bg-card/95 backdrop-blur-sm">
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium w-24 md:w-36 sticky left-0 bg-card/95 backdrop-blur-sm z-20 border-r border-border/50">Dimension</th>
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 font-semibold text-foreground bg-foreground/5 min-w-[140px] md:min-w-[180px]">Infracodebase</th>
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium min-w-[100px] md:min-w-[140px]">Pulumi AI</th>
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium min-w-[120px] md:min-w-[160px]">System Initiative</th>
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium min-w-[100px] md:min-w-[140px]">Firefly</th>
+                        <th className="text-left py-2 md:py-3 px-2 md:px-4 text-muted-foreground font-medium min-w-[100px] md:min-w-[140px]">Brainboard</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {comparisonRows.map((row, index) => (
+                        <tr key={row.dimension} className={index < comparisonRows.length - 1 ? "border-b border-border/50" : ""}>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground font-medium sticky left-0 bg-card/80 backdrop-blur-sm z-10 border-r border-border/50">{row.dimension}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-foreground bg-foreground/5 font-medium">{row.infracodebase}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.pulumi}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.systemInit}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.firefly}</td>
+                          <td className="py-3 md:py-4 px-2 md:px-4 text-muted-foreground">{row.brainboard}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </motion.div>
           </motion.div>
