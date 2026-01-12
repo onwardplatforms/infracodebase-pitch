@@ -138,7 +138,7 @@ export function Problem() {
           </motion.div>
 
           {/* Responsive stat cards container */}
-          <div className="flex-shrink-0 w-full lg:w-[612px] h-auto lg:h-[140px] relative">
+          <div className="flex-shrink-0 w-full lg:w-[612px] h-auto lg:h-[140px] lg:relative">
             <AnimatePresence mode="wait">
               {expandedCard === null ? (
                 /* Collapsed: 4 tiles */
@@ -148,7 +148,7 @@ export function Problem() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="grid grid-cols-2 lg:flex gap-2 md:gap-3"
+                  className="flex flex-col lg:flex-row gap-2 md:gap-3 items-center lg:items-stretch"
                 >
                   {statCards.map((card, index) => (
                     <motion.div
@@ -156,18 +156,23 @@ export function Problem() {
                       initial={hasAnimated ? false : { opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: hasAnimated ? 0 : 0.2 + index * 0.1 }}
-                      className="w-full lg:w-36 p-3 md:p-4 rounded-lg bg-card text-right cursor-pointer hover:bg-card/80 transition-colors"
+                      className="w-full max-w-xs lg:max-w-none lg:w-36 p-3 md:p-4 rounded-lg bg-card cursor-pointer hover:bg-card/80 transition-colors"
                       onClick={() => setExpandedCard(card.id)}
                     >
-                      <p className="text-2xl md:text-4xl font-semibold text-foreground tabular-nums">
-                        {hasAnimated ? (
-                          <>{card.value}{card.suffix}</>
-                        ) : (
-                          <><AnimatedCounter target={card.value} duration={card.duration} />{card.suffix}</>
-                        )}
-                      </p>
-                      <p className="text-xs md:text-sm text-muted-foreground mt-1">{card.label}</p>
-                      <p className="text-xs text-muted-foreground/60 mt-0.5 md:mt-1">{card.source}</p>
+                      {/* Mobile: horizontal layout, Desktop: vertical */}
+                      <div className="flex lg:flex-col items-center lg:items-end gap-3 lg:gap-0">
+                        <p className="text-3xl lg:text-4xl font-semibold text-foreground tabular-nums flex-shrink-0">
+                          {hasAnimated ? (
+                            <>{card.value}{card.suffix}</>
+                          ) : (
+                            <><AnimatedCounter target={card.value} duration={card.duration} />{card.suffix}</>
+                          )}
+                        </p>
+                        <div className="flex-1 lg:flex-none text-left lg:text-right">
+                          <p className="text-xs md:text-sm text-muted-foreground lg:mt-1">{card.label}</p>
+                          <p className="text-xs text-muted-foreground/60 lg:mt-0.5 lg:md:mt-1">{card.source}</p>
+                        </div>
+                      </div>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -179,16 +184,16 @@ export function Problem() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute inset-0 p-5 rounded-lg bg-card cursor-pointer"
+                  className="w-full lg:absolute lg:inset-0 p-4 md:p-5 rounded-lg bg-card cursor-pointer"
                   onClick={() => setExpandedCard(null)}
                 >
                   {statCards
                     .filter((card) => card.id === expandedCard)
                     .map((card) => (
-                      <div key={card.id} className="flex items-center gap-6 h-full">
+                      <div key={card.id} className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6 lg:h-full">
                         {/* Main stat */}
-                        <div className="text-right flex-shrink-0 w-28">
-                          <p className="text-5xl font-semibold text-foreground tabular-nums">
+                        <div className="text-left lg:text-right flex-shrink-0 lg:w-28">
+                          <p className="text-4xl lg:text-5xl font-semibold text-foreground tabular-nums">
                             {card.value}{card.suffix}
                           </p>
                           <p className="text-sm text-muted-foreground mt-1">{card.label}</p>
@@ -196,10 +201,10 @@ export function Problem() {
                         </div>
 
                         {/* Divider */}
-                        <div className="w-px self-stretch bg-border" />
+                        <div className="w-full lg:w-px h-px lg:h-auto lg:self-stretch bg-border" />
 
                         {/* Narrative */}
-                        <p className="flex-1 text-base text-foreground leading-relaxed">
+                        <p className="flex-1 text-sm lg:text-base text-foreground leading-relaxed">
                           {card.narrative}
                         </p>
                       </div>

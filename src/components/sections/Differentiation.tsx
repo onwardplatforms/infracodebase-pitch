@@ -51,7 +51,7 @@ const comparisons = [
 ];
 
 function RevealCard({ comparison, index }: { comparison: typeof comparisons[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   return (
     <motion.div
@@ -59,9 +59,9 @@ function RevealCard({ comparison, index }: { comparison: typeof comparisons[0]; 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
       className="relative h-28 md:h-40 cursor-pointer overflow-hidden rounded-lg"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setIsHovered(!isHovered)}
+      onMouseEnter={() => setIsRevealed(true)}
+      onMouseLeave={() => setIsRevealed(false)}
+      onTouchStart={() => setIsRevealed(!isRevealed)}
     >
       {/* Front (base layer) */}
       <div className="absolute inset-0 w-full h-full bg-card p-3 md:p-5 flex flex-col justify-center">
@@ -73,7 +73,7 @@ function RevealCard({ comparison, index }: { comparison: typeof comparisons[0]; 
       <motion.div
         className="absolute inset-0 w-full h-full bg-foreground p-3 md:p-5 flex flex-col justify-center"
         initial={{ clipPath: "inset(0 100% 0 0)" }}
-        animate={{ clipPath: isHovered ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }}
+        animate={{ clipPath: isRevealed ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       >
         <p className="text-sm md:text-lg font-semibold text-background mb-1 md:mb-2">{comparison.back.title}</p>
@@ -128,7 +128,7 @@ export function Differentiation() {
           Go from... <span className="md:hidden text-muted-foreground/60">(tap to reveal)</span>
         </motion.p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4">
           {comparisons.map((comparison, index) => (
             <RevealCard key={comparison.id} comparison={comparison} index={index} />
           ))}

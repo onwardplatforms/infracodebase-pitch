@@ -151,32 +151,44 @@ export function Solution() {
           </div>
         </motion.div>
 
-        {/* Tool carousel at bottom */}
+        {/* Tool carousel at bottom on desktop, hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-auto"
+          className="mt-auto hidden lg:block"
         >
           <ToolCarousel />
         </motion.div>
       </div>
 
       {/* Right - Architecture diagram (full height) */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="w-full lg:w-3/5 flex items-center justify-center"
-      >
-        <Image
-          src="/images/infracodebase-arch.png"
-          alt="Infracodebase Architecture"
-          width={800}
-          height={800}
-          className="object-contain max-h-[300px] md:max-h-[500px] lg:max-h-full w-full"
-        />
-      </motion.div>
+      <div className="w-full lg:w-3/5 flex flex-col gap-6 lg:gap-0 items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center justify-center w-full"
+        >
+          <Image
+            src="/images/infracodebase-arch.png"
+            alt="Infracodebase Architecture"
+            width={800}
+            height={800}
+            className="object-contain max-h-[300px] md:max-h-[500px] lg:max-h-full w-full"
+          />
+        </motion.div>
+        
+        {/* Tool carousel below image on mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="lg:hidden w-full"
+        >
+          <ToolCarousel />
+        </motion.div>
+      </div>
     </div>
   );
 }
