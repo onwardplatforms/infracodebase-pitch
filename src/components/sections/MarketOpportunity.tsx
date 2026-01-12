@@ -13,11 +13,11 @@ const markets = [
   },
   {
     name: "AI Development Tools",
-    current: "~$5B",
-    currentYear: "2023",
-    future: "~$26B",
+    current: "~$7B",
+    currentYear: "2025",
+    future: "~$24B",
     futureYear: "2030",
-    cagr: "~25%",
+    cagr: "~27%",
   },
 ];
 

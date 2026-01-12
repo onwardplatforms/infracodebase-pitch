@@ -8,9 +8,9 @@ const points = [
   {
     id: "market",
     headline: "The market is large and growing fast",
-    detail: "Cloud infrastructure spend exceeds $680B annually and grows 20%+ per year. AI developer tooling is a $7B+ market growing at 27% CAGR. Enterprise spend on AI coding tools hit $4B in 2025 alone. Every company is investing in both cloud and AI. The intersection is where we play.",
+    detail: "Cloud infrastructure spend exceeds $750B annually and grows 20%+ per year. AI developer tooling is a $7B+ market growing at 27% CAGR. Enterprise spend on AI coding tools hit $4B in 2025 alone. Every company is investing in both cloud and AI. The intersection is where we play.",
     stats: [
-      { value: "$680B+", label: "cloud market", source: "Gartner" },
+      { value: "$750B+", label: "cloud market", source: "Gartner" },
       { value: "$7B+", label: "AI dev tools", source: "Mordor" },
       { value: "27%", label: "CAGR", source: "2025-2030" },
     ],
