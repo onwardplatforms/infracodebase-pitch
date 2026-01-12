@@ -11,6 +11,7 @@ import { WhyCustomersWillPay } from "@/components/sections/WhyCustomersWillPay";
 import { MarketOpportunity } from "@/components/sections/MarketOpportunity";
 import { Traction } from "@/components/sections/Traction";
 import { GoToMarket } from "@/components/sections/GoToMarket";
+import { Flywheel } from "@/components/sections/Flywheel";
 import { Team } from "@/components/sections/Team";
 import { TheAsk } from "@/components/sections/TheAsk";
 
@@ -29,6 +30,7 @@ export default function Home() {
       <MarketOpportunity />
       <Traction />
       <GoToMarket />
+      <Flywheel />
       <Team />
       <TheAsk />
     </PitchExperience>
