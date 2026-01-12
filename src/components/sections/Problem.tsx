@@ -224,14 +224,23 @@ export function Problem() {
             The business is ready
           </p>
 
-          <div className="space-y-1">
-            {["Opportunity identified", "Budget approved", "Team assembled", "Cloud team engaged"].map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <span className="text-muted-foreground">✓</span>
-                <span className="text-lg text-foreground">{item}</span>
-              </div>
+          <div className="flex gap-3 mb-6">
+            {["Funded", "Staffed", "Aligned", "Motivated"].map((item, index) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                className="px-3 py-1.5 rounded-full bg-card text-sm font-medium text-foreground"
+              >
+                {item}
+              </motion.div>
             ))}
           </div>
+
+          <p className="text-lg text-foreground font-medium">
+            Nothing moves until the cloud shows up.
+          </p>
         </motion.div>
 
         {/* Right - Vertical Timeline */}

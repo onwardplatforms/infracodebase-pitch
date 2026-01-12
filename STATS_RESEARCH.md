@@ -410,12 +410,23 @@ These show the problem is accelerating, not stabilizing.
 - Source: [IDC via Microsoft](https://www.microsoft.com/en-us/security/blog/2025/11/06/new-idc-research-highlights-a-major-cloud-security-shift/)
 
 ### AI Adoption is Accelerating Faster Than Trust
-- GenAI adoption **doubled**: 33% (2023) → 71% (2024)
+- GenAI adoption **doubled**: 33% (2023) → 65% (2024) → **72-78%** (2025)
 - AI spending grew **3.2x** YoY ($11.5B → $37B)
-- **78%** of orgs now use AI (up from 55% in 2023)
+- **78%** of orgs now use AI in at least one business function (McKinsey 2025)
+- **72%** specifically use generative AI in at least one function (McKinsey 2025)
 - **87%** of large enterprises implementing AI solutions
 - **84%** of developers use or plan to use AI tools (up from 76%)
-- Source: [Menlo Ventures 2025](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/)
+- Source: [McKinsey State of AI 2025](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai), [Menlo Ventures 2025](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/)
+
+### Cloud/Infrastructure-Specific AI Adoption (2025)
+- **54%** of I&O leaders adopting AI to cut costs (Gartner 2025)
+- **50%** cite lack of budget as top AI adoption challenge
+- **48%** cite integration difficulties as top challenge
+- Executive confidence in AI execution jumped from **53% to 71%** in one year
+- **70-85%** of AI initiatives fail due to fragmented data infrastructure
+- AI infrastructure spending up **166%** YoY (IDC Q2 2025)
+- **84.1%** of AI spending deployed in cloud/shared environments
+- Source: [Gartner I&O Survey 2025](https://www.gartner.com/en/newsroom/press-releases/2025-10-29-gartner-survey-54-percent-of-infrastructure-and-operations-leaders-are-adopting-artificial-intelligence-to-cut-costs), [Flexential 2025](https://www.flexential.com/resources/report/2025-state-ai-infrastructure)
 
 **The collision course:**
 - AI adoption: ↑↑↑ (doubling, tripling)
