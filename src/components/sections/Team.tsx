@@ -6,7 +6,7 @@ const founders = [
   {
     name: "Justin O'Connor",
     role: "Founder / CEO / CTO",
-    description: "Nearly a decade in cloud across Azure, AWS, and GCP with some of the largest and most heavily regulated enterprises. Deep technical expertise in building and scaling AI systems. Leads product and strategy.",
+    description: "A decade in cloud across Azure, AWS, and GCP with some of the largest and most heavily regulated enterprises. Deep technical expertise in building and scaling AI systems. Leads product and strategy.",
   },
   {
     name: "Tarak",
