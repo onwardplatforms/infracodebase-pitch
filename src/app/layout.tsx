@@ -24,6 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="https://stouse2icbprd.blob.core.windows.net/public/videos/NewAgentExperience.mp4"
+          as="video"
+          type="video/mp4"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

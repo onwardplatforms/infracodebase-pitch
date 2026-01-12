@@ -119,7 +119,7 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       >
         {children.map((child, index) => (
           <section
-            key={`${index}-${visitCounts[index]}`}
+            key={index}
             className="h-screen w-screen flex items-center justify-center"
           >
             {child}
