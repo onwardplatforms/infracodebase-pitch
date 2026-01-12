@@ -1,3 +1,35 @@
+# Stats Research
+
+---
+
+## Market Size Data
+
+### Cloud Infrastructure Market
+- **$680B+** global cloud infrastructure spend (2025)
+- **20%+** annual growth rate
+- Source: [Gartner](https://www.gartner.com/en/newsroom)
+
+### AI Developer Tools Market
+- **$4.5B** in 2025 → **$10B** by 2030 (17.3% CAGR)
+- Source: [Virtue Market Research](https://virtuemarketresearch.com/report/ai-developer-tools-market)
+
+### AI Code Tools Market
+- **$7.4B** in 2025 → **$24B** by 2030 (26.6% CAGR)
+- Large enterprises: 63% market share
+- Source: [Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/artificial-intelligence-code-tools-market)
+
+### AI Coding Assistants Market
+- Projected to reach **$97.9B** by 2030 (24.8% CAGR)
+- Source: [Business Wire / ResearchAndMarkets](https://www.businesswire.com/news/home/20250319490646/en/)
+
+### Enterprise AI Spend on Coding (2025)
+- **$4B** in 2025 (55% of departmental AI spend)
+- 4.1x YoY growth in departmental AI spending
+- Total enterprise GenAI spend: $37B (up from $11.5B in 2024)
+- Source: [Menlo Ventures 2025](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/)
+
+---
+
 # Problem Section Stats Research
 
 This document compiles authoritative statistics for the Problem section of the pitch deck. The goal is to find stats that tie directly to our core message: **"Everyone wants speed. Trust is the limiting factor."**
