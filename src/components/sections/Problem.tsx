@@ -63,21 +63,21 @@ const journeySteps = [
 const statCards = [
   {
     id: "speed",
-    value: 6,
+    value: 3,
     suffix: "+",
     label: "months to deliver",
-    source: "Enterprise avg",
+    source: "Gartner",
     duration: 1.5,
-    narrative: "Budget approved, team assembled, requirements clear. But cloud becomes the bottleneck. Requests queue up, and months pass before anything ships.",
+    narrative: "Budget approved, team assembled, requirements clear. But cloud becomes the bottleneck. Large IT projects take 3-18 months depending on complexity. Requests queue up, and months pass before anything ships.",
   },
   {
     id: "trust",
-    value: 86,
+    value: 33,
     suffix: "%",
-    label: "of immature orgs don't trust AI",
-    source: "Gartner",
+    label: "trust AI output",
+    source: "Stack Overflow 2025",
     duration: 1.5,
-    narrative: "AI could accelerate delivery. But while 71% of enterprises use GenAI, trust is declining, down to 33%. Without governance, teams won't let AI near production.",
+    narrative: "AI could accelerate delivery. But while 78% of enterprises use GenAI, trust is declining. Without governance, teams won't let AI near production.",
   },
   {
     id: "misconfig",
