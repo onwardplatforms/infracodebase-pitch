@@ -3,10 +3,9 @@
 import { motion } from "framer-motion";
 
 const metrics = [
-  { metric: "500+", detail: "Organic users since Oct '25" },
-  { metric: "5+", detail: "Enterprise calls per week" },
-  { metric: "10+", detail: "Active conversations" },
-  { metric: "50%", detail: "Convert to 2nd meetings" },
+  { metric: "500+", detail: "Organic users, no marketing spend" },
+  { metric: "10+", detail: "Enterprise conversations per week" },
+  { metric: "Global", detail: "Brand from day one" },
 ];
 
 const enterprises = ["Bank of America", "JPMorgan Chase", "Wells Fargo", "Volvo Cars", "Red Ventures"];
@@ -16,6 +15,8 @@ const useCases = [
   "Legacy app modernization",
   "Cloud-to-cloud migration",
   "ClickOps to IaC conversion",
+  "Greenfield infrastructure",
+  "Cloud security",
 ];
 
 export function Traction() {

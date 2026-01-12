@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { X } from "lucide-react";
 
 const approaches = [
   {
@@ -12,45 +14,165 @@ const approaches = [
   {
     name: "Developer AI tools",
     badges: ["Cursor", "Copilot", "Claude Code"],
-    detail: "These tools are great for individual productivity, but they're biased toward execution, not governance. Infrastructure code isn't hard to type. It's hard to get right. Results depend heavily on expert operators, and outcomes vary widely. Meanwhile, architects, security, and operations teams don't work in IDEs at all, even though they shape how infrastructure should be built.",
+    detail: "General-purpose coding assistants boost individual productivity but lack infrastructure context. They're biased toward execution, not governance. Results depend heavily on expert operators, and architects, security, and operations teams are left out entirely.",
     rootIssue: "AI assists the developer, not the organization.",
   },
   {
     name: "Scan and fix",
-    badges: ["Policy engines", "Scanners", "Linters"],
-    detail: "These tools reduce risk by catching violations after code is written. But detection happens too late. AI produces output, humans clean it up. Rework is required, feedback loops get longer, and velocity suffers. Governance remains reactive instead of preventative.",
+    badges: ["env0", "Spacelift", "Policy engines"],
+    detail: "Orchestration platforms and policy engines reduce risk by catching violations after code is written. But detection happens too late. AI produces output, humans clean it up. Rework is required, feedback loops get longer, and velocity suffers. Governance remains reactive instead of preventative.",
     rootIssue: "Controls are bolted on after generation.",
   },
   {
     name: "Build it yourself",
-    badges: ["Internal platforms", "Custom tooling", "Dedicated teams"],
-    detail: "Enterprises try to solve this internally by building bespoke platforms. These efforts take years, cost millions to build, and carry ongoing maintenance burdens that compound over time. Most stall in pilot purgatory, never reach broad adoption, or deliver ROI. Most end up buying anyway.",
+    badges: ["Internal AI projects", "Custom agents", "Dedicated teams"],
+    detail: "Enterprises try to solve this by building their own AI systems. These efforts require specialized talent, constant model updates, and ongoing prompt engineering. Most stall in pilot purgatory, never reach broad adoption, and fail to deliver ROI. 95% of enterprise AI projects fail.",
     rootIssue: "The problem is too complex to rebuild repeatedly in-house.",
   },
 ];
 
+const comparisonRows = [
+  {
+    dimension: "Approach",
+    infracodebase: "AI agents + enterprise standards integration",
+    pulumi: "Natural language to Pulumi code",
+    systemInit: "Digital twin modeling + AI agents",
+    firefly: "Cloud discovery + IaC from existing",
+    brainboard: "Visual Terraform design",
+  },
+  {
+    dimension: "IaC support",
+    infracodebase: "Terraform, Pulumi, OpenTofu, CDK+",
+    pulumi: "Pulumi only",
+    systemInit: "Proprietary (replaces IaC)",
+    firefly: "Terraform, Pulumi, CloudFormation",
+    brainboard: "Terraform only",
+  },
+  {
+    dimension: "Enterprise standards",
+    infracodebase: "Built-in, customizable",
+    pulumi: "None",
+    systemInit: "Limited",
+    firefly: "Policy enforcement only",
+    brainboard: "Limited",
+  },
+  {
+    dimension: "Design + Code",
+    infracodebase: "Both, connected",
+    pulumi: "Code only",
+    systemInit: "Visual modeling",
+    firefly: "Code only (brownfield)",
+    brainboard: "Visual → Code",
+  },
+  {
+    dimension: "Adoption model",
+    infracodebase: "Works with existing tools",
+    pulumi: "Pulumi ecosystem",
+    systemInit: "Rip and replace",
+    firefly: "Adds to existing",
+    brainboard: "Terraform ecosystem",
+  },
+];
+
 export function ExistingSolutions() {
+  const [showCompetitors, setShowCompetitors] = useState(false);
+
   return (
-    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16">
+    <div className="flex flex-col h-full w-full px-12 lg:px-20 py-16 relative">
       {/* Top - Headline */}
       <div className="flex-shrink-0 mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-5xl"
-        >
-          <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
-            Why existing solutions fall short
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
-            Enterprises are trying everything.
-          </h2>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-muted-foreground mt-2">
-            None of it is working.
-          </h2>
-        </motion.div>
+        <div className="flex justify-between items-start">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-5xl"
+          >
+            <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+              Why existing solutions fall short
+            </p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground">
+              Enterprises are trying everything.
+            </h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-muted-foreground mt-2">
+              None of it is working.
+            </h2>
+          </motion.div>
+
+          {/* Direct competitors button */}
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            onClick={() => setShowCompetitors(true)}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-4 py-2"
+          >
+            Who else is building here?
+          </motion.button>
+        </div>
       </div>
+
+      {/* Competitors Modal */}
+      <AnimatePresence>
+        {showCompetitors && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 bg-background/95 z-50 flex flex-col px-12 lg:px-20 py-16"
+          >
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <p className="text-muted-foreground text-sm uppercase tracking-wider mb-4">
+                  Direct competitors
+                </p>
+                <h2 className="text-4xl md:text-5xl font-semibold leading-tight text-foreground">
+                  Who else is building here?
+                </h2>
+              </div>
+              <button
+                onClick={() => setShowCompetitors(false)}
+                className="p-2 hover:bg-muted rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex-1 overflow-auto"
+            >
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-3 px-4 text-muted-foreground font-medium w-36"></th>
+                    <th className="text-left py-3 px-4 font-semibold text-foreground bg-foreground/5">Infracodebase</th>
+                    <th className="text-left py-3 px-4 text-muted-foreground font-medium">Pulumi AI</th>
+                    <th className="text-left py-3 px-4 text-muted-foreground font-medium">System Initiative</th>
+                    <th className="text-left py-3 px-4 text-muted-foreground font-medium">Firefly</th>
+                    <th className="text-left py-3 px-4 text-muted-foreground font-medium">Brainboard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, index) => (
+                    <tr key={row.dimension} className={index < comparisonRows.length - 1 ? "border-b border-border/50" : ""}>
+                      <td className="py-4 px-4 text-muted-foreground font-medium">{row.dimension}</td>
+                      <td className="py-4 px-4 text-foreground bg-foreground/5 font-medium">{row.infracodebase}</td>
+                      <td className="py-4 px-4 text-muted-foreground">{row.pulumi}</td>
+                      <td className="py-4 px-4 text-muted-foreground">{row.systemInit}</td>
+                      <td className="py-4 px-4 text-muted-foreground">{row.firefly}</td>
+                      <td className="py-4 px-4 text-muted-foreground">{row.brainboard}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Four approaches - 2x2 grid */}
       <div className="flex-1 flex flex-col gap-6">
