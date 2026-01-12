@@ -58,7 +58,6 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         {children}
       </body>

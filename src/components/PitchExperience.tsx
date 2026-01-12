@@ -37,7 +37,9 @@ export function PitchExperience({ children }: PitchExperienceProps) {
   const totalSections = children.length;
   const touchStartY = useRef<number | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const touchStartTime = useRef<number | null>(null);
   const isSwiping = useRef(false);
+  const scrollableRef = useRef<HTMLElement | null>(null);
 
   // Increment visit count when section changes
   useEffect(() => {
@@ -112,36 +114,75 @@ export function PitchExperience({ children }: PitchExperienceProps) {
       if (isSwiping.current) return;
       touchStartY.current = e.touches[0].clientY;
       touchStartX.current = e.touches[0].clientX;
+      touchStartTime.current = Date.now();
+      
+      // Find the scrollable element
+      let target = e.target as HTMLElement;
+      while (target && target !== document.body) {
+        const overflowY = window.getComputedStyle(target).overflowY;
+        if (overflowY === 'auto' || overflowY === 'scroll') {
+          scrollableRef.current = target;
+          break;
+        }
+        target = target.parentElement as HTMLElement;
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (touchStartY.current === null || touchStartX.current === null) return;
+      if (touchStartY.current === null || touchStartX.current === null || touchStartTime.current === null) return;
       if (isSwiping.current) return;
 
       const touchEndY = e.changedTouches[0].clientY;
       const touchEndX = e.changedTouches[0].clientX;
       const deltaY = touchStartY.current - touchEndY;
       const deltaX = touchStartX.current - touchEndX;
+      const deltaTime = Date.now() - touchStartTime.current;
+      
+      // Calculate velocity (pixels per millisecond)
+      const velocity = Math.abs(deltaY) / deltaTime;
+      
+      // Check if we're at scroll boundaries
+      const scrollable = scrollableRef.current;
+      let atTop = true;
+      let atBottom = true;
+      
+      if (scrollable) {
+        atTop = scrollable.scrollTop <= 1;
+        atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1;
+      }
 
-      // Only trigger if vertical swipe is more significant than horizontal
-      // and the swipe distance is meaningful (at least 50px)
-      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
-        isSwiping.current = true;
-
-        if (deltaY > 0) {
-          goToNext(); // Swipe up -> next section
-        } else {
-          goToPrev(); // Swipe down -> previous section
+      // More strict conditions:
+      // 1. Must be primarily vertical (not horizontal)
+      // 2. Must have significant distance (120px minimum) OR high velocity (> 0.5px/ms)
+      // 3. Must be at scroll boundary if swiping up/down
+      const isVertical = Math.abs(deltaY) > Math.abs(deltaX) * 1.5;
+      const hasDistance = Math.abs(deltaY) > 120;
+      const hasVelocity = velocity > 0.5;
+      const meetsThreshold = hasDistance || (hasVelocity && Math.abs(deltaY) > 80);
+      
+      if (isVertical && meetsThreshold) {
+        // Swipe up (next) - only if at bottom or no scrollable
+        if (deltaY > 0 && (atBottom || !scrollable)) {
+          isSwiping.current = true;
+          goToNext();
+          setTimeout(() => {
+            isSwiping.current = false;
+          }, 600);
         }
-
-        // Reset swipe lock after animation
-        setTimeout(() => {
-          isSwiping.current = false;
-        }, 600);
+        // Swipe down (prev) - only if at top or no scrollable
+        else if (deltaY < 0 && (atTop || !scrollable)) {
+          isSwiping.current = true;
+          goToPrev();
+          setTimeout(() => {
+            isSwiping.current = false;
+          }, 600);
+        }
       }
 
       touchStartY.current = null;
       touchStartX.current = null;
+      touchStartTime.current = null;
+      scrollableRef.current = null;
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -158,7 +199,7 @@ export function PitchExperience({ children }: PitchExperienceProps) {
   }, [goToNext, goToPrev, goToSection, totalSections]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-background">
+    <div className="relative h-dvh w-screen overflow-hidden bg-background">
       {/* Sections */}
       <div
         className="h-full w-full transition-transform duration-500 ease-out"
@@ -167,7 +208,7 @@ export function PitchExperience({ children }: PitchExperienceProps) {
         {children.map((child, index) => (
           <section
             key={index}
-            className="h-screen w-screen flex items-center justify-center"
+            className="h-dvh w-screen flex items-center justify-center"
           >
             {child}
           </section>
