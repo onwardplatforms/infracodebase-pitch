@@ -53,7 +53,7 @@ const points = [
   },
   {
     id: "early",
-    headline: "We started building before the window opened",
+    headline: "We have a working product and real user feedback",
     detail: "We've been building toward this moment. We have working product, design partners testing in real environments, and learnings from enterprise feedback. Trust at this level isn't bought with demos. It's earned by shipping.",
   },
 ];
