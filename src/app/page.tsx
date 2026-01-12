@@ -9,7 +9,9 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Differentiation } from "@/components/sections/Differentiation";
 import { WhyCustomersWillPay } from "@/components/sections/WhyCustomersWillPay";
 import { MarketOpportunity } from "@/components/sections/MarketOpportunity";
+import { Traction } from "@/components/sections/Traction";
 import { Team } from "@/components/sections/Team";
+import { TheAsk } from "@/components/sections/TheAsk";
 
 export default function Home() {
   return (
@@ -24,7 +26,9 @@ export default function Home() {
       <Differentiation />
       <WhyCustomersWillPay />
       <MarketOpportunity />
+      <Traction />
       <Team />
+      <TheAsk />
     </PitchExperience>
   );
 }

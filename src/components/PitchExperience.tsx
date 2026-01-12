@@ -24,7 +24,9 @@ const sectionNames = [
   "Why This Is Better",
   "Why Customers Pay",
   "Market Opportunity",
+  "Traction",
   "The Team",
+  "The Ask",
 ];
 
 export function PitchExperience({ children }: PitchExperienceProps) {
