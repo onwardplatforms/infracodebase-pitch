@@ -11,7 +11,7 @@ const founders = [
   {
     name: "Tarak",
     role: "Co-Founder / CRO",
-    description: "Built multiple startups. Previously led growth at Brainboard (Y Combinator). Deep network across the cloud ecosystem. Leads growth and sales.",
+    description: "Worked at large enterprise companies worldwide and built multiple startups. Previously led growth at Brainboard (Y Combinator). Deep network across the cloud ecosystem. Leads growth and sales.",
   },
 ];
 
