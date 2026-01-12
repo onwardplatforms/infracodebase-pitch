@@ -66,9 +66,9 @@ export function ExistingSolutions() {
           className="mt-auto flex items-end justify-between gap-8"
         >
           <div>
-            <p className="text-5xl font-semibold text-foreground">95%</p>
-            <p className="text-lg text-muted-foreground">of enterprise AI projects fail to deliver measurable impact</p>
-            <p className="text-sm text-muted-foreground/60 mt-1">MIT 2025</p>
+            <p className="text-5xl font-semibold text-foreground">72%</p>
+            <p className="text-lg text-muted-foreground">of CIOs are breaking even or losing money on AI investments</p>
+            <p className="text-sm text-muted-foreground/60 mt-1">Gartner 2025</p>
           </div>
           <div className="text-right max-w-2xl">
             <p className="text-2xl md:text-3xl text-foreground font-semibold">

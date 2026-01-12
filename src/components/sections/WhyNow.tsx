@@ -47,6 +47,20 @@ export function WhyNow() {
                 <span className="text-lg text-foreground">Skills don't scale across distributed orgs and experience levels</span>
               </li>
             </ul>
+
+            {/* Stat callouts */}
+            <div className="mt-6 pt-4 border-t border-border flex gap-6">
+              <div>
+                <p className="text-3xl font-semibold text-foreground">82%</p>
+                <p className="text-sm text-muted-foreground">run hybrid multi-cloud</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">CSA 2025</p>
+              </div>
+              <div>
+                <p className="text-3xl font-semibold text-foreground">154%</p>
+                <p className="text-sm text-muted-foreground">increase in cloud incidents</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">IDC 2024</p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right card - AI inflection point */}
@@ -56,27 +70,34 @@ export function WhyNow() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex-1 p-6 rounded-lg bg-card"
           >
-            <p className="text-lg text-muted-foreground mb-4">AI capability is here. Trust is not.</p>
+            <p className="text-lg text-muted-foreground mb-4">AI adoption is outpacing trust</p>
             <ul className="space-y-3">
               <li className="flex gap-3">
                 <div className="w-2 h-2 rounded-full bg-muted-foreground mt-2.5 flex-shrink-0" />
-                <span className="text-lg text-foreground">Teams are already using AI to generate infrastructure code</span>
+                <span className="text-lg text-foreground">GenAI adoption doubled in one year (33% → 71%)</span>
               </li>
               <li className="flex gap-3">
                 <div className="w-2 h-2 rounded-full bg-muted-foreground mt-2.5 flex-shrink-0" />
-                <span className="text-lg text-foreground">But without governance, it produces inconsistent, non-compliant output</span>
+                <span className="text-lg text-foreground">But trust in AI is declining, not growing</span>
               </li>
               <li className="flex gap-3">
                 <div className="w-2 h-2 rounded-full bg-muted-foreground mt-2.5 flex-shrink-0" />
-                <span className="text-lg text-foreground">Trust is eroding, not building</span>
+                <span className="text-lg text-foreground">Without governance, AI produces inconsistent, non-compliant output</span>
               </li>
             </ul>
 
-            {/* Stat callout */}
-            <div className="mt-6 pt-4 border-t border-border">
-              <p className="text-3xl font-semibold text-foreground">45%</p>
-              <p className="text-sm text-muted-foreground">of AI-generated code introduces security flaws</p>
-              <p className="text-xs text-muted-foreground/60 mt-1">Veracode 2025</p>
+            {/* Stat callouts */}
+            <div className="mt-6 pt-4 border-t border-border flex gap-6">
+              <div>
+                <p className="text-3xl font-semibold text-foreground">71%</p>
+                <p className="text-sm text-muted-foreground">now use GenAI (2x in 1 year)</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">McKinsey 2024</p>
+              </div>
+              <div>
+                <p className="text-3xl font-semibold text-foreground">33%</p>
+                <p className="text-sm text-muted-foreground">trust AI (down from 43%)</p>
+                <p className="text-xs text-muted-foreground/60 mt-1">Stack Overflow 2025</p>
+              </div>
             </div>
           </motion.div>
         </div>
