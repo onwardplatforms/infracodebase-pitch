@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 const metrics = [
-  { metric: "~500", detail: "Users in 4 months" },
+  { metric: "~500", detail: "Users since launch" },
   { metric: "850+", detail: "Webinar registrants" },
   { metric: "25+", detail: "Ambassadors" },
   { metric: "Several", detail: "Channel partners" },
@@ -35,7 +35,7 @@ export function Traction() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground mb-4"
         >
-          4 months in. Growing fast.
+          Early stage. Growing fast.
         </motion.h2>
 
         <motion.p
