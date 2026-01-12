@@ -114,14 +114,6 @@ export function Differentiation() {
           Teams ship faster because there is less friction and trust is built in. Business creates value for customers and employees while windows of opportunity are open. Everybody wins.
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg text-foreground"
-        >
-          Deep enterprise context that compounds. Purpose-built architecture that can't be bolted on.
-        </motion.p>
       </div>
 
       {/* Bottom - Reveal cards */}
