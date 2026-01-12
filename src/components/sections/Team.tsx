@@ -16,7 +16,7 @@ const founders = [
 ];
 
 const moats = [
-  { title: "AI-native", detail: "Agent-first architecture SaaS can't retrofit" },
+  { title: "AI-native", detail: "Agent-first architecture that SaaS can't retrofit" },
   { title: "Network effects", detail: "Public sharing + internal collaboration compounds" },
   { title: "Enterprise depth", detail: "Built for the last 20% that defines enterprise-grade" },
   { title: "Sticky by value", detail: "Easy to adopt, hard to leave" },
