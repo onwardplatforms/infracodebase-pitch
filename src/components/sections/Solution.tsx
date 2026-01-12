@@ -124,7 +124,7 @@ export function Solution() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-foreground mb-8"
         >
-          The agentic AI platform for enterprise infrastructure design and code.
+          The agentic AI platform for enterprise infra design and code.
         </motion.h2>
 
         {/* Supporting content */}
@@ -162,16 +162,20 @@ export function Solution() {
         </motion.div>
       </div>
 
-      {/* Right - Image placeholder (full height) */}
+      {/* Right - Architecture diagram (full height) */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="w-3/5 flex items-center justify-center border-2 border-dashed border-muted-foreground/30 rounded-lg"
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="w-3/5 flex items-center justify-center"
       >
-        <p className="text-muted-foreground text-sm">
-          [Platform architecture diagram]
-        </p>
+        <Image
+          src="/images/infracodebase-arch.png"
+          alt="Infracodebase Architecture"
+          width={800}
+          height={800}
+          className="object-contain max-h-full"
+        />
       </motion.div>
     </div>
   );
