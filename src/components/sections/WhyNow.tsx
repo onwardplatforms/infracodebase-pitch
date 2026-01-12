@@ -137,21 +137,27 @@ export function WhyNow() {
                   className="overflow-hidden"
                 >
                   <div className="ml-9 pb-4">
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mb-4">
-                      {point.detail}
-                    </p>
-                    {point.stats && (
-                      <div className="flex gap-8">
-                        {point.stats.map((stat) => (
-                          <div key={stat.label}>
-                            <p className="text-3xl font-semibold text-foreground">{stat.value}</p>
-                            <p className="text-sm text-muted-foreground">{stat.label}</p>
-                            {"source" in stat && (
-                              <p className="text-xs text-muted-foreground/60">{stat.source}</p>
-                            )}
-                          </div>
-                        ))}
+                    {point.stats ? (
+                      <div className="flex justify-between items-start">
+                        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                          {point.detail}
+                        </p>
+                        <div className="flex gap-8 flex-shrink-0 ml-12">
+                          {point.stats.map((stat) => (
+                            <div key={stat.label} className="text-right">
+                              <p className="text-3xl font-semibold text-foreground">{stat.value}</p>
+                              <p className="text-sm text-muted-foreground">{stat.label}</p>
+                              {"source" in stat && (
+                                <p className="text-xs text-muted-foreground/60">{stat.source}</p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       </div>
+                    ) : (
+                      <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+                        {point.detail}
+                      </p>
                     )}
                   </div>
                 </motion.div>
